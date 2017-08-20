@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Online Consultation System</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link type="text/css" rel="stylesheet" href="/stylesheets/landing.css">
+        <link type="text/css" rel="stylesheet" href="/stylesheets/main.css">
+    </head>
+    <body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">OnlineConsultSystem</a>
+            </div>
+            <div>
+                <ul class="nav navbar-nav navbar-left">
+                    <li><a href="/admins/new">Add Doctor</a></li>
+                    <li><a href="/admins/view">View Doctor</a></li>
+                    <li><a href="/admins/allusers">View Patients</a></li>
+                    <li><a href="/discussions">Discussion</a></li>
+                </ul>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <% if (!currentUser){ %>
+                        <li><a href="/login">Login</a></li>
+                        <li><a href="/register">Sign Up</a></li>
+                   <% } else{ %>
+                        <li><a href="#">Signed in as <%=currentUser.username%></a></li>
+                        <li><a href="/logout">Logout</a></li>
+                   <% } %>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <h1>View Patients</h1>
+
+    <% todos.forEach( function( todo ){ %>
+
+    <div class="container">
+    <div class="page-header text-center">
+        
+    </div>
+    
+    <div class="row">
+        <div class="col-md-12">
+            <div class="well">
+                <h3><span class="fa fa-user"></span>Patient</h3>
+                <h3><%= todo.firstName%><span></span><%=todo.lastName%></h3>
+                      <p>
+                        <strong>Id</strong>: <%= todo._id %><br>
+                        <strong>E-mail</strong>: <%= todo.email %><br>
+                        <strong>First Name</strong>: <%= todo.firstName %><br>
+                        <strong>Last Name</strong>: <%= todo.lastName %><br>
+                      </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<% }); %>
+
+</body>
+</html>

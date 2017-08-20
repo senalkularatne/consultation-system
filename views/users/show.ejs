@@ -1,0 +1,15 @@
+<%include ../partials/header%>    
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="thumbnail">
+            <h1><%= user.firstName +" "+ user.lastName%></h1>
+            <img src="<%= user.avatar %>" alt="user profile image">
+            <div class="caption"><a href="mailto:<%=user.emial%>"><%=user.email%></a></div>
+    </div>
+        </div>
+    <div class="col-md-8"></div>
+
+</div>
+
+</body>

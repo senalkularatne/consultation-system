@@ -1,0 +1,93 @@
+.navbar{
+    margin-bottom: 0px;
+}
+#information i{
+    font-size:40px;
+    color:rgb(24,196,207);
+
+}
+ #information{
+     margin-top: 50px;
+     text-align: center;
+ }
+ 
+#jumbotron {
+  /*text-align:center;*/
+  background: url("https://static.dezeen.com/uploads/2017/02/sheffield-childrens-hospital-morag-myerscough-interior-design-uk_dezeen_2364_hero.gif") center center fixed;
+  background-size:cover;
+  padding:110px;
+  margin-bottom: 0px;
+}
+
+#jumbotron i{
+    font-size:30px;
+    padding:10px;
+    color:rgb(24,196,207);
+}
+
+#jumbotron ul{
+    list-style: none;
+}
+
+#jumbotron p{
+    font-size: 20px;
+}
+
+#jumbotron li{
+    font-size:20px;
+}
+
+h1{
+    font-size: 50px;
+}
+
+.actioncall {
+	padding:30px 30px 20px 30px;
+	border-radius: 4px;
+	border-bottom: 2px solid #f2f2f2;
+	margin-top: 10px;
+	box-shadow: 0 7px 6px -6px #777;
+
+}
+
+.act-btn {
+	float:right;
+	padding:20px 10px 20px 20px;
+	margin-top:10px;
+}
+
+.act-text {
+	margin-top:10px;
+	text-align: left;
+}
+
+.act-text h3 {
+	font-weight:900;
+	line-height:1.1em;
+	margin-bottom: 20px;
+}
+
+
+#serviceImg{
+    border:none;
+    padding:20px;
+}
+
+#service{
+    margin-top: 60px;
+    text-align: center;
+}
+
+#service i{
+    font-size: 50px;
+    padding: 15px;
+    text-align: center;
+    color:rgb(24,196,207);
+
+}
+
+
+#img-para{
+    padding: 0;
+    height: 390px;
+}
