@@ -8,7 +8,9 @@ var express         = require("express"),
     User            = require("./models/user"),
     Doctor          = require("./models/doctor"),
     Discussion      = require("./models/discussion"),
+    Appointment     = require("./models/appointment"),
     Comment         = require("./models/comment"),
+    Reply           = require("./models/reply"),
     seedDB          = require("./seeds"),
     flash           = require("connect-flash");
     // multer          = require('multer'),
@@ -16,7 +18,9 @@ var express         = require("express"),
 
 //REQUIRING ROUTES
 var commentRoute         = require("./routes/comments"),
+    replyRoute           = require("./routes/reply"),
     discussionsRoute     = require("./routes/discussions"),
+    appointmentRoute     = require("./routes/appointment"),
     indexRoute           = require("./routes/index"),
     patientRoute         = require("./routes/patients"),
     adminRoute           = require("./routes/admins"),
@@ -57,7 +61,9 @@ app.use(function(req, res, next){
 
 app.use("/", indexRoute);
 app.use("/discussions",discussionsRoute);
+app.use("/appointment",appointmentRoute);
 app.use("/discussions/:id/comments",commentRoute);
+app.use("/appointment/:id/reply",replyRoute);
 app.use("/patients", patientRoute);
 app.use("/admins", adminRoute);
 app.use("/doctors", doctorRoute);

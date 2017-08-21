@@ -1,0 +1,34 @@
+<%include ../partials/header%>    
+
+<% if (currentUser && currentUser.isAdmin) { %> 
+<h1>You are Admin</h1> 
+<% }%>
+
+<div class="container">
+     <header class="jumbotron">
+         <div class="container">
+             <h1>Welcome To The Online Consulatation System</h1>
+             <p>View our certified doctors from all over the world</p>
+             <p>
+                <a class="btn btn-primary btn-large" href="/appointment/new">Appointment</a>
+             </p>
+         </div>
+     </header>
+     
+     <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+        <% appointment.forEach(function(discussion){ %>
+            <div class="col-md-3 col-sm-6">
+                <div class="thumbnail">
+                   
+                   <div class="caption">
+                       <h4><%= discussion.name %></h4>
+                   </div>
+                   <p>
+                       <a href="/appointment/<%= discussion._id %>" class="btn btn-primary">More Info</a>
+                   </p>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+</div>
+</body>

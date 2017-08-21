@@ -3,25 +3,25 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3">
-            <p class="lead">YelpCamp</p>
+            <p class="lead">Appointment List </p>
             <div class="list-group">
-                <li class="list-group-item active">Info 1</li>
+                <li class="list-group-item active">Info </li>
                 
             </div>
         </div>
         <div class="col-md-9">
             <div class="thumbnail">
-                <img class="img-responsive" src="<%= discussion.image %>">
+                <img class="img-responsive" src="<%= appointment.image %>">
                 <div class="caption-full">
                     
-                    <h4><a><%=discussion.name%></a></h4>
-                    <p><%= discussion.description %></p>
+                    <h4><a><%=appointment.name%></a></h4>
+                    <p><%= appointment.description %></p>
                     <p>
-                        <em>Submitted by: <%= discussion.author.username %>, <%= moment(discussion.createdAt).fromNow() %></em>                   
+                        <em>Submitted by: <%= appointment.author.username %>, <%= moment(appointment.createdAt).fromNow() %></em>                   
                     </p>
-                    <% if (currentUser && discussion.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin ) { %>
-                        <a class="btn btn-xs btn-warning" href="/discussions/<%=discussion._id%>/edit">Edit</a>
-                        <form id="deleteForm" action="/discussions/<%=discussion._id%>?_method=DELETE" method="POST">
+                    <% if (currentUser && appointment.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin ) { %>
+                        <a class="btn btn-xs btn-warning" href="/appointment/<%=appointment._id%>/edit">Edit</a>
+                        <form id="deleteForm" action="/appointment/<%=appointment._id%>?_method=DELETE" method="POST">
                             <button class="btn btn-xs btn-danger">Delete</button>
                         </form>
                     <% } %>
@@ -29,10 +29,10 @@
             </div>
             <div class="well">
                 <div class="text-right">
-                    <a class="btn btn-success" href="/discussions/<%= discussion._id %>/comments/new">Add New Comment</a>
+                    <a class="btn btn-success" href="/appointment/<%= appointment._id %>/reply/new">Add New Reply</a>
                 </div>
                 <hr>
-                <% discussion.comments.forEach(function(comment){ %>
+                <% appointment.reply.forEach(function(comment){ %>
                     <div class="row">
                         <div class="col-md-12">
                             <strong><%= comment.author.username %></strong>
@@ -41,8 +41,8 @@
                                 <%= comment.text %> 
                             </p>
                         <% if (currentUser && comment.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin) { %>
-                            <a class="btn btn-xs btn-warning" href="/discussions/<%=discussion._id%>/comments/<%=comment._id%>/edit">Edit</a>
-                            <form id="deleteComment" action="/discussions/<%=discussion._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
+                            <a class="btn btn-xs btn-warning" href="/appointment/<%=appointment._id%>/reply/<%=comment._id%>/edit">Edit</a>
+                            <form id="deleteComment" action="/appointment/<%=appointment._id%>/reply/<%=comment._id%>?_method=DELETE" method="POST">
                                 <input type="submit" class="btn btn-danger btn-xs" value="Delete">
                             </form>
                         <% } %>

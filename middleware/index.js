@@ -1,12 +1,36 @@
 // all the middleware goes here
 var Discussion = require("../models/discussion");
+var Appointment = require("../models/appointment");
 var Comment = require("../models/comment");
+var Reply = require("../models/reply");
 var User    = require("../models/user");
 var middlewareObj = {};
 
 middlewareObj.checkCampgroundOwnership = function(req, res, next) {
  if(req.isAuthenticated()){
         Discussion.findById(req.params.id, function(err, foundDiscussion){
+           if(err){
+               req.flash("Discussion not found");
+               res.redirect("back");
+           }  else {
+               // does user own the campground?
+            if(foundDiscussion.author.id.equals(req.user._id) || req.user.isAdmin) {
+                next();
+            } else {
+                req.flash("error", "Permission Denied");
+                res.redirect("back");
+            }
+           }
+        });
+    } else {
+        req.flash("error", "You need to be logged in to do that");
+        res.redirect("back");
+    }
+}
+
+middlewareObj.checkAppgroundOwnership = function(req, res, next) {
+ if(req.isAuthenticated()){
+        Appointment.findById(req.params.id, function(err, foundDiscussion){
            if(err){
                req.flash("Discussion not found");
                res.redirect("back");
@@ -52,6 +76,27 @@ middlewareObj.requireAdmin = function(req, res, next){
 middlewareObj.checkCommentOwnership = function(req, res, next) {
  if(req.isAuthenticated()){//check if any user is logged in first
         Comment.findById(req.params.comment_id, function(err, foundComment){
+           if(err){
+               res.redirect("back");
+           }  else {
+               // does user own the comment?
+            if(foundComment.author.id.equals(req.user._id) || req.user.isAdmin) {
+                next();
+            } else {
+                req.flash("error", "You do not have permission to do that");
+                res.redirect("back");
+            }
+           }
+        });
+    } else {
+        req.flash("error", "You need to be logged in to do that");
+        res.redirect("back");
+    }
+}
+
+middlewareObj.checkReplyOwnership = function(req, res, next) {
+ if(req.isAuthenticated()){//check if any user is logged in first
+        Reply.findById(req.params.reply_id, function(err, foundComment){
            if(err){
                res.redirect("back");
            }  else {
