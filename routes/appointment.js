@@ -2,19 +2,45 @@ var express = require("express");
 var router = express.Router();
 var Appointment = require("../models/appointment");
 var middleware = require("../middleware");
+var Doctor    = require("../models/doctor");
+var User    = require("../models/user");
 
 
 
 //INDEX - show all appointment posts  --main pag
 router.get("/", function(req, res){
     // Get all campgrounds from DB
-    Appointment.find({}, function(err, allDiscussions){
-       if(err){
-           console.log(err);
-       } else {
-          res.render("appointment/index",{appointment:allDiscussions, currentUser: req.user});
-       }
+    User.findById(req.user._id, function(err, user){
+              if (user.role==="doctor"){
+                      Appointment.find({ doc_id: req.user._id  }, function(err, allDiscussions){
+                         if(err){
+                             console.log(err);
+                         } else {
+                            res.render("appointment/index",{appointment:allDiscussions, currentUser: req.user});
+                         }
+                      });
+              } 
+              else if (user.role===""){
+                  Appointment.find({ use_id: req.user._id  }, function(err, allDiscussions){
+                         if(err){
+                             console.log(err);
+                         } else {
+                            res.render("appointment/index",{appointment:allDiscussions, currentUser: req.user});
+                         }
+                      });
+              }
+              else{
+                Appointment.find({}, function(err, allDiscussions){
+                         if(err){
+                             console.log(err);
+                         } else {
+                            res.render("appointment/index",{appointment:allDiscussions, currentUser: req.user});
+                         }
+                      });
+              }
     });
+
+
 });
 
 //CREATE - add new campground to DB 
@@ -23,12 +49,14 @@ router.post("/", middleware.isLoggedIn, function(req, res){
     // get data from form and add to appointment array
     var name = req.body.name;
     //var image = req.body.image;
+    var doctor_id = req.body.doctor_id
+    var user_id = req.user._id
     var desc = req.body.description;
     var author={
                 id: req.user._id,
                 username: req.user.username
                 } //create an object
-    var newDiscussion = {name: name, description: desc, author: author}
+    var newDiscussion = {name: name,doc_id:doctor_id,use_id:user_id ,description: desc, author: author}
     // Create a new discussion and save to DB
     Appointment.create(newDiscussion, function(err, newlyCreated){
         if(err){

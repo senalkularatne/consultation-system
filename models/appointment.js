@@ -3,6 +3,8 @@ var mongoose = require("mongoose");
 var appointmentSchema = new mongoose.Schema({
    name: String,
    image: String,
+   doc_id: String,
+   use_id: String,
    description: String,
    createdAt: {
       type: Date,
