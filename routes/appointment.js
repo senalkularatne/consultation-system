@@ -52,11 +52,14 @@ router.post("/", middleware.isLoggedIn, function(req, res){
     var doctor_id = req.body.doctor_id
     var user_id = req.user._id
     var desc = req.body.description;
+    var reason = req.body.reason;
+    var date = req.body.date;
+    var time = req.body.time;
     var author={
                 id: req.user._id,
                 username: req.user.username
                 } //create an object
-    var newDiscussion = {name: name,doc_id:doctor_id,use_id:user_id ,description: desc, author: author}
+    var newDiscussion = {name: name,doc_id:doctor_id,use_id:user_id ,date:date,time:time,reason:reason,description: desc, author: author}
     // Create a new discussion and save to DB
     Appointment.create(newDiscussion, function(err, newlyCreated){
         if(err){

@@ -15,7 +15,7 @@ router.get("/new",middleware.isLoggedIn, function(req, res){
         if(err){
             console.log(err);
         } else {
-             res.render("reply/new", {appointment: appointment});
+             res.render("reply/new", {discussion: appointment});
         }
     })
 });
@@ -37,7 +37,7 @@ router.post("/",middleware.isLoggedIn, function(req, res){
                reply.author.id = req.user._id;
                reply.author.username = req.user.username;
                reply.save();
-               appointment.comments.push(reply);
+               appointment.reply.push(reply);
                appointment.save();
                req.flash("success", "Successfully added reply");
                res.redirect('/appointment/' + appointment._id);

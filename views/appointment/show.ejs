@@ -15,7 +15,10 @@
                 <div class="caption-full">
                     
                     <h4><a><%=appointment.name%></a></h4>
-                    <p><%= appointment.description %></p>
+                    <h5>Reason   : <%=appointment.reason%></h5>
+                    <h5>Date     : <%=appointment.date%></h5>
+                    <h5>Time     : <%=appointment.time%></h5>
+                    <p>Symptioms : <%= appointment.description %></p>
                     <p>
                         <em>Submitted by: <%= appointment.author.username %>, <%= moment(appointment.createdAt).fromNow() %></em>                   
                     </p>

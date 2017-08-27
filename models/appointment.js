@@ -5,6 +5,9 @@ var appointmentSchema = new mongoose.Schema({
    image: String,
    doc_id: String,
    use_id: String,
+   date: String,
+   time: String,
+   reason: String,
    description: String,
    createdAt: {
       type: Date,
